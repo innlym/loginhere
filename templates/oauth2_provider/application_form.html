@@ -1,0 +1,84 @@
+{% extends "oauth2_provider/base.html" %}
+
+{% block css %}
+    {{ base.super }}
+    <style type="text/css">
+        form div {
+            margin: 16px 0;
+        }
+        .help-inline {
+            color: red;
+        }
+
+        textarea {
+            min-height: 6em;
+            word-break: break-all
+        }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+
+    <h2 class="block-center-heading">编辑应用 {{ application.name }}</h2>
+
+    <form class="min-center" method="post" role="form" action="{% url 'oauth2_provider:update' application.id %}">
+        <table class="mytable">
+            <tr class="{{form.name.errors|yesno:'alert-danger,,'}}">
+                <th>客户端名称</th>
+                <td>
+                    <input maxlength="255" name="name" type="text" value="{{ form.name.value }}" required />
+                </td>
+            </tr>
+
+            <tr class="{{form.client_id.errors|yesno:'alert-danger,,'}}">
+                <th>客户端标识</th>
+                <td>
+                    <input class="form-control" id="id_client_id" maxlength="100" name="client_id" type="text" value="{{ form.client_id.value }}" required />
+                </td>
+            </tr>
+
+            <tr class="{{form.client_secret.errors|yesno:'alert-danger,,'}}">
+                <th>客户端密码</th>
+                <td>
+                     <textarea cols="40" maxlength="255" name="client_secret" required>{{ form.client_secret.value }}</textarea>
+                </td>
+            </tr>
+
+            <tr class="{{form.client_type.errors|yesno:'alert-danger,,'}}">
+                <th>客户端类型</th>
+                <td>
+                    <select name="client_type" required />
+                        <option value="confidential" {% if form.client_type.value == 'confidential' %}selected="selected"{% endif %}>机密客户端</option>
+                        <option value="public" {% if form.client_type.value == 'public' %}selected="selected"{% endif %}>公开客户端</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr class="{{form.authorization_grant_type.errors|yesno:'alert-danger,,'}}">
+                <th>授权许可类型</th>
+                <td>
+                    <select name="authorization_grant_type" required />
+                        <option value="authorization-code" {% if form.authorization_grant_type.value == 'authorization-code' %}selected="selected"{% endif %}>授权码许可</option>
+                        <option value="implicit" {% if form.authorization_grant_type.value == 'implicit' %}selected="selected"{% endif %}>隐式许可</option>
+                        <option value="password" {% if form.authorization_grant_type.value == 'password' %}selected="selected"{% endif %}>资源所有者密码凭据许可</option>
+                        <option value="client-credentials" {% if form.authorization_grant_type.value == 'client-credentials' %}selected="selected"{% endif %}>客户端凭证许可</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr class="{{form.redirect_uris.errors|yesno:'alert-danger,,'}}">
+                <th>重定向URI</th>
+                <td>
+                    <input name="redirect_uris" type="text" value="{{ form.redirect_uris.value }}" required />
+                </td>
+            </tr>
+        </table>
+            
+        <input name="user" value="{{ form.user.value }}" type="hidden" />
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary btn-block">保存并提交</button>
+        <a class="btn btn-default btn-block" href="{% url 'oauth2_provider:list' %}">取消</a>
+    </form>
+
+{% endblock %}

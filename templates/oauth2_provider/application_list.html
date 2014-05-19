@@ -1,0 +1,22 @@
+{% extends "oauth2_provider/base.html" %}
+
+
+{% block content %}
+    <div class="min-center">
+        <h2 class="block-center-heading">你的客户端</h2>
+        {% if applications %}
+            <div class="list-group">
+                {% for application in applications %}
+                    <a class="list-group-item" href="{{ application.get_absolute_url }}">
+                        <b class="list-group-item-heading">{{ application.name }}</b>
+                        <em class="list-group-item-text">{{ application.redirect_uris }}</em>
+                    </a>
+                {% endfor %}
+            </div>
+
+            <a class="btn btn-success" href="{% url "oauth2_provider:register" %}">添加客户端</a>
+        {% else %}
+            <p>您还没有添加任何客户端，如果您想添加客户端请<a class="btn btn-default btn-xs btn-success" href="{% url 'oauth2_provider:register' %}">点击这里</a>。</p>
+        {% endif %}
+    </div>
+{% endblock %}

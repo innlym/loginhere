@@ -1,0 +1,75 @@
+{% extends "oauth2_provider/base.html" %}
+
+{% block css %}
+    <style type="text/css">
+        textarea {
+            word-break: break-all;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+    <h2 class="center-heading">注册一个新客户端</h2>
+    <form  class="min-center" method="post" role="form" action=""> 
+        <table class="mytable">
+            <tr class="{{form.name.errors|yesno:'alert-danger,,'}}">
+                <th>客户端名称</th>
+                <td>
+                    <input maxlength="255" name="name" type="text" required />
+                </td>
+            </td>
+
+            <tr class="{{form.client_id.errors|yesno:'alert-danger,,'}}">
+                <th>客户端标识</th>
+                <td>
+                    <input maxlength="100" name="client_id" type="text" value="{{ form.client_id.value }}" required />
+                </td>
+            </tr>
+
+            <tr class="{{form.client_secret.errors|yesno:'alert-danger,,'}}">
+                <th>客户端密码</th>
+                <td>
+                    <textarea cols="40" maxlength="255" name="client_secret" required>{{ form.client_secret.value }}</textarea>
+                </td>
+            </tr>
+
+            <tr class="{{form.client_type.errors|yesno:'alert-danger,,'}}">
+                <th>客户端类型</th>
+                <td>
+                    <select name="client_type" required />
+                        <option value="" selected="selected">---------</option>
+                        <option value="confidential">机密客户端</option>
+                        <option value="public">公开客户端</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr class="{{form.authorization_grant_type.errors|yesno:'alert-danger,,'}}">
+                <th>授权许可类型</th>
+                <td>
+                    <select name="authorization_grant_type" required />
+                        <option value="" selected="selected">---------</option>
+                        <option value="authorization-code">授权码许可</option>
+                        <option value="implicit">隐式许可</option>
+                        <option value="password">资源所有者密码凭据许可</option>
+                        <option value="client-credentials">客户端凭证许可</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr class="{{form.redirect_uris.errors|yesno:'alert-danger,,'}}">
+                <th>重定向URI</th>
+                <td>
+                    <input name="redirect_uris" type="text" required />
+                </td>
+            </tr>
+        </table>
+
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary btn-block">保存并提交</button>
+        <a class="btn btn-default btn-block" href="{% url 'oauth2_provider:list' %}">取消</a>
+    </form>
+
+{% endblock %}
+

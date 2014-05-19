@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>授权 - 单点登陆系统</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Language" content="zh-cn" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="author" content="Innlym">
+    <meta name="description" content="" />
+    <meta name="keywords" content="Oauth, SSO, 单点登陆" />
+    <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" />
+    <style type="text/css">
+        body {
+            background-color: #eee;
+        }
+        .content {
+            max-width: 400px;
+            text-align: center;
+            margin: 32px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>授权许可 - 单点登陆系统</h2>
+    <div class="panel content">
+        <div class="panel-body">
+            {% if not error %}
+                <form id="authorizationForm" method="post">
+                    <h3 class="center-heading">允许 {{ application.name }} 访问您的资料？</h3>
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                        {% if field.is_hidden %}
+                            {{ field }}
+                        {% endif %}
+                    {% endfor %}
+
+                    <p>客户端正在请求以下权限：</p>
+                    <ul>
+                        {% for scope in scopes_descriptions %}
+                            <li>{{ scope }}</li>
+                        {% endfor %}
+                    </ul>
+
+                    {{ form.errors }}
+                    {{ form.non_field_errors }}
+
+                    
+                    <input type="submit" class="btn btn-lg btn-block btn-success" name="allow" value="允许访问"/>
+                    <input type="submit" class="btn btn-lg btn-primary btn-block" value="取消"/>
+                </form>
+
+            {% else %}
+                <h2>Error: {{ error.error }}</h2>
+                <p>{{ error.description }}</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% extends "oauth2_provider/base.html" %}
+
+
+{% block content %}
+
+    <div class="min-center">
+        <h2>{{ application.name }}</h2>
+
+        <table class="mytable">
+            <tr>
+                <th>客户端标识</th>
+                <td>
+                    {{ application.client_id }}
+                </td>
+            </tr>
+
+            <tr>
+                <th>客户端密码</th>
+                <td>
+                   {{ application.client_secret }}
+                </td>
+            </tr>
+
+            <tr>
+                <th>客户端类型</th>
+                <td>
+                    {{ application.client_type }}
+                </td>
+            </tr>
+
+            <tr>
+                <th>授权类型</th>
+                <td>
+                    {{ application.authorization_grant_type }}
+                </td>
+            </tr>
+
+            <tr>
+                <th>重定向URI</th>
+                <td>
+                    {{ application.redirect_uris }}
+                </td>
+            </tr>
+
+        </table>
+
+        
+        <a class="btn btn-default btn-block" href="{% url "oauth2_provider:list" %}">后退</a>
+        <a class="btn btn-primary btn-block" href="{% url "oauth2_provider:update" application.id %}">编辑</a>
+        <a class="btn btn-danger  btn-block" href="{% url "oauth2_provider:delete" application.id %}">删除</a>
+    </div>
+{% endblock %}

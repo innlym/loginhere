@@ -1,0 +1,50 @@
+
+form {
+    padding: 15px;
+}
+
+form .checkbox {
+    font-weight: normal;
+}
+
+form .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+form .form-control:focus {
+    z-index: 2;
+}
+
+form .err-radio {
+    list-style: none;
+    color: red;
+    padding-left: 0;
+    margin: 0;
+}
+
+
+form .form-control:not(.last-of-class) {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+form .form-control + .form-control {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.last-of-class {
+    margin-bottom: 8px;
+}
+
+.panel {
+    margin: 16px auto 16px auto;
+    max-width: 400px;
+}

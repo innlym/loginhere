@@ -1,0 +1,45 @@
+{% extends "oauth2_provider/base.html" %}
+
+{% block css %}
+    <style type="text/css">
+        .dialog {
+            max-width: 500px;
+            margin: auto;
+            text-align: center;
+            position: relative;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -moz-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            -o-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
+
+        h3 {
+            margin-bottom: 2em;
+        }
+
+        html, body, body>.container {
+            height: 90%;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="dialog panel panel-danger">
+        <div class="panel-heading">删除客户端</div>
+        <div class="panel-body">
+            <h3>你确定要删除客户端 {{ application.name }} 吗？</h3>
+            <form method="post" action="{% url 'oauth2_provider:delete' application.pk %}">
+                {% csrf_token %}
+
+                <div class="control-group">
+                    <div class="controls">
+                        <a class="btn btn-lg" href="{% url "oauth2_provider:list" %}">取消</a>
+                        <input type="submit" class="btn btn-lg btn-danger" name="allow" value="删除"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

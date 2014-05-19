@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}User Profile{% endblock %}
+{% block css %}
+    <link href="{{ STATIC_URL }}css/datepicker3.css" rel="stylesheet">
+{% endblock %}
+
+{% block navbar-user %}class="active"{% endblock %}
+
+{% block content %}
+    <div class="min-center">
+        <h4>账号资料</h4>
+        <table class="mytable">
+            <tr>
+                <th>用户名</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>邮箱</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>密码</th>
+                <td>
+                    <a class="btn btn-xs btn-primary btn-block" href="{% url "password_change" %}">修改密码</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <form  class="min-center" action="" method="post">
+        <h4>个人资料</h4>
+        <table  class="mytable">
+            {{ form.as_table }}
+        </table>
+        <input class="btn btn-primary btn-block" type="submit" value="保存修改" />
+        {% csrf_token %}
+    </form>
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-datepicker.js" charset="UTF-8"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/locales/bootstrap-datepicker.zh-CN.js" charset="UTF-8"></script>
+    <script type="text/javascript">
+        $("#id_birthday").datepicker({
+            format: 'yyyy-mm-dd',
+            autoclose: true,
+            startView: 2,
+            language: "zh-CN"
+        });
+    </script>
+{% endblock %}

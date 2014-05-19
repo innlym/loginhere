@@ -1,0 +1,155 @@
+body {
+    padding-top: 64px;
+    padding-bottom: 20px;
+    background-color: #f5f5f5;
+    background: url('/static/img/foxtail.png') repeat; 
+}
+
+html {
+    height: 100%;
+} 
+body {
+    min-height: 100%;
+    position: relative;
+}
+
+.navbar.navbar-inverse.navbar-fixed-top {
+    background: url('/static/img/single-upper.png');
+}
+
+#foot-placeholder, #foot-content {
+    height: 64px;
+    line-height: 64px;
+}
+
+#foot-content {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(163, 163, 127, 0.7);
+    color: #666;
+}
+
+.main-content-block, .right-sidebar-block {
+    padding: 19px 29px 29px;
+    margin-top: 10px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+    box-shadow: 0 1px 2px rgba(0,0,0,.05);
+}
+
+.center-heading {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.loose-list > div,
+.loose-list > input {
+    margin-bottom: 16px;
+}
+
+
+.err_radio {
+    color: red;
+}
+
+
+
+.mytable {
+    display: block;
+    background-color: #F6F7F8;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+.mytable tr:first-child th {
+    border-top-left-radius: 4px;
+    padding-top: 10px;
+}
+
+.mytable tr:last-child th {
+    border-bottom-left-radius: 8px;
+    padding-bottom: 10px;
+}
+
+.mytable th {
+    padding: 8px 20px;
+    width: 12em;
+    text-align: right;
+    text-align: right;
+    background-color: #FFF;
+    border-right: 1px solid #EDEDED;
+    font-weight: normal;
+}
+
+.mytable tr+tr th {
+    border-top: 1px solid #EDEDED;
+}
+
+@media (max-width: 767px){
+    .mytable th {
+        width: 6em;
+        padding: 8px 0.5em;
+    }
+}
+
+
+
+.mytable td {
+    padding-left: 1em;
+}
+
+.mytable label {
+    margin: 0;
+    font-weight: normal;
+}
+
+.mytable input, .mytable textarea, .mytable select {
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #555;
+    vertical-align: middle;
+    background-color: #FFF;
+    border: 1px solid #CCC;
+    border-radius: 4px;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+}
+.mytable textarea {
+    height: 7em;
+    word-break: break-all;
+}
+
+.mytable td {
+    word-break: break-all;
+}
+
+.mytable input:focus, .mytable select:focus, .mytable textarea:focus {
+    border-color: rgba(82, 168, 236, 0.8);
+    outline: 0px none;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset, 0px 0px 8px rgba(82, 168, 236, 0.6);
+}
+
+
+.min-center {
+    margin: 16px auto 16px auto;
+    max-width: 600px;
+}
+
+h4 {
+    color: #08c;
+    text-align: left;
+    margin-bottom: 4px;
+}
+
+
