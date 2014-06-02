@@ -1,33 +1,15 @@
-"""
-Django settings for loginhere project.
 
-For more information on this file, see
-https://docs.djangoproject.com/en/1.6/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.6/ref/settings/
-"""
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'd9m=wuzic+owm9^^_17j2$g&kdy8t*7z^o8-ve^l6$^^768-$l'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+#TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
-# Application definition
+ALLOWED_HOSTS = ['127.0.1.1']
 
 INSTALLED_APPS = (
     'suit',
@@ -58,24 +40,18 @@ WSGI_APPLICATION = 'loginhere.wsgi.application'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
-#CORS_URLS_REGEX = '^.*$'
-
-# Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'loginhere',
-        'USER': 'loginhere',
+        'USER': 'root',
         'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': 3306,
     }
 }
 
-# Internationalization
-# https://docs.djangoproject.com/en/1.6/topics/i18n/
 
 LANGUAGE_CODE = 'zh-cn'
 
@@ -87,9 +63,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR + '/static/'
@@ -111,14 +84,8 @@ TEMPLATE_DIRS = (
 
 AUTH_USER_MODEL = 'accounts.HereUser'
 
-# email config
-EMAIL_HOST='smtp.gmail.com'
-EMAIL_HOST_USER='innlym@gmail.com'
-EMAIL_HOST_PASSWORD='idwnspw2gg'
-EMAIL_USE_TLS = True
 
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
-
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
 )
@@ -129,3 +96,4 @@ EMAIL_HOST_PASSWORD='pw2014'
 EMAIL_USE_TLS = False
 
 SITE_NAME = 'Login Here'
+
